@@ -10,21 +10,14 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'excerpt', 'body', 'image_path', 'is_published', 'min_to_read'
+        'user_id','title', 'excerpt', 'body', 'image_path', 'is_published', 'min_to_read'
     ];
 
-    // protected $table = 'post';
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 
-    // protected $primarykey = 'title';
-
-    // protected $timestamps = false;
-    
-    // protected $dateTime = 'dd-mm-yyyy';
-
-    // protected $connection = 'sqlite';
-    
-    // protected $attibutes = [
-    //     'is_published' => true
-    // ];
-
+    public function meta(){
+        return $this->hasOne(PostMeta::class);
+    }
 }
