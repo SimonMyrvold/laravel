@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\DB;
 
 class PostsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->only(['create', 'edit', 'update', 'destory']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -42,6 +46,7 @@ class PostsController extends Controller
      */
     public function store(PostFormRequest $request)
     {
+
         $request->validated();
 
         $post = Post::create([
